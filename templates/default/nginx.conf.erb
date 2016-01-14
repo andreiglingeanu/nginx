@@ -98,6 +98,8 @@ http {
   <%= key %> <%= value %>;
   <% end -%>
 
-  include <%= node['nginx']['dir'] %>/conf.d/*.conf;
+  <% if node['nginx']['enable_custom_conf.d'] -%>
+    include <%= node['nginx']['dir'] %>/conf.d/*.conf;
+  <% end -%>
   include <%= node['nginx']['dir'] %>/sites-enabled/*;
 }
